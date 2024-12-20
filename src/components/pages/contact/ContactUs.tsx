@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaPhoneAlt, FaFacebook } from "react-icons/fa"; // Import icons from react-icons
+import { aboutUsData } from "@/contexts/aboutUsData";
 
 const ContactUs: React.FC = () => {
   return (
@@ -52,9 +53,11 @@ const ContactUs: React.FC = () => {
                 >
                   <h3 className="text-xl font-semibold text-purple-600">ঠিকানা:</h3>
                   <p className="mt-1 text-gray-600">
-                    রামনা মিস্ত্রী পাড়া, চিলমারী, বাংলাদেশ, ৫৬৩০
+                    {
+                      aboutUsData.address
+                    }
                   </p>
-                  <p className="mt-1 text-gray-600">চিলমারী, কুড়িগ্রাম</p>
+                 
                 </motion.div>
 
                 {/* Contact Information */}
@@ -79,7 +82,7 @@ const ContactUs: React.FC = () => {
                   </div>
                   <div className="flex items-center mt-4 text-gray-600">
                     <FaPhoneAlt className="mr-2 text-green-600" />
-                    <p>ফোন: +৮৮০১৭১৯৪৬৪৯৮১, ০১৯৬৯-৯০৬০০৮</p>
+                    <p>ফোন: +৮৮০ ১৭১৯৪৬৪৯৮১, +৮৮০ ১৯৬৯-৯০৬০০৮</p>
                   </div>
                   <div className="flex items-center mt-4">
                     <FaFacebook className="mr-2 text-blue-600" />

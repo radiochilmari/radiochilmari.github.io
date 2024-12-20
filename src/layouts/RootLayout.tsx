@@ -6,6 +6,7 @@ import "@/styles/globals.css";
 import Navbar from '@/components/ui/Navbar';
 import Footer from "@/components/ui/Footer";
 import { seoMetadata } from "@/contexts/SEO";  // Import the SEO metadata
+import "swiper/css";
 
 const inter = Inter({ subsets: ["latin"] });
 

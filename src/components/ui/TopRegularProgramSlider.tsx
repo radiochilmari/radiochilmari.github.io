@@ -3,7 +3,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import "swiper/css";
 import Image, { StaticImageData } from "next/image";
 import { imageK } from "@/contexts/TopRegularProgramSliderData";
 

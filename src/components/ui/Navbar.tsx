@@ -32,7 +32,7 @@ const Navbar = () => {
       }`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.2 }}
     >
       {/* Left: Logo */}
       <div className="flex items-center">
@@ -50,7 +50,7 @@ const Navbar = () => {
       <CurrentTimeInBangla />
 
       {/* Center: Navigation Links (Desktop View) */}
-      <div className="hidden md:flex space-x-6 text-black font-bold font-bengali text-sm md:text-lg lg:text-xl">
+      <div className="hidden md:flex space-x-6 text-blue-500 font-bold font-bengali text-sm md:text-lg lg:text-xl">
         <motion.div
           className="hover:underline"
           initial={{ opacity: 0 }}
@@ -73,15 +73,16 @@ const Navbar = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.6 }}
         >
-          <Link href="/contact-us">যোগাযোগ করুন</Link>
+          <Link href="/our-address">আমাদের ঠিকানা</Link>
         </motion.div>
       </div>
 
       {/* Right: Hamburger Menu (Mobile View) */}
       <div className="md:hidden flex items-center">
         <button
+         className="text-blue-500 focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-black focus:outline-none"
+         
         >
           {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
@@ -96,15 +97,15 @@ const Navbar = () => {
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="flex flex-col items-center space-y-4 py-4 font-bold font-bengali text-lg">
+          <div className="flex flex-col items-center space-y-4 py-4  font-bold font-bengali text-lg text-blue-500">
             <Link href="/about-us" onClick={() => setIsMenuOpen(false)}>
               আমাদের সম্পর্কে
             </Link>
             <Link href="/our-show" onClick={() => setIsMenuOpen(false)}>
               আমাদের অনুষ্ঠান সমূহ
             </Link>
-            <Link href="/contact-us" onClick={() => setIsMenuOpen(false)}>
-              যোগাযোগ করুন
+            <Link href="/our-address" onClick={() => setIsMenuOpen(false)}>
+            আমাদের ঠিকানা
             </Link>
           </div>
         </motion.div>

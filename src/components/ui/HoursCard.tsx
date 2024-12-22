@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import moment from "moment";
 import "moment/locale/bn"; // Import Bangla locale
 import { motion } from "framer-motion"; // Import framer-motion
@@ -28,6 +28,8 @@ const toBanglaNumber = (number: string): string => {
 const HoursCard: React.FC = () => {
   const [currentTime, setCurrentTime] = useState<string>("");
   const [hoveredDay, setHoveredDay] = useState<number | null>(null);
+  const popperRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const updateTime = () => {
@@ -44,6 +46,22 @@ const HoursCard: React.FC = () => {
 
     return () => clearInterval(interval); // Cleanup
   }, []);
+
+  useEffect(() => {
+    if (hoveredDay !== null && popperRef.current && buttonRef.current) {
+      createPopper(buttonRef.current, popperRef.current, {
+        placement: "top",
+        modifiers: [
+          {
+            name: "offset",
+            options: {
+              offset: [0, 10],
+            },
+          },
+        ],
+      });
+    }
+  }, [hoveredDay]);
 
   const hours = [
     {
@@ -68,8 +86,37 @@ const HoursCard: React.FC = () => {
       time: toBanglaNumber("২:৪৫ PM - ৮:০৫ PM"),
       schedule: ["আরশি নগর: ৪:০০ PM", "আনন্দ আড্ডা: ৬:১০ PM"],
     },
-    // Add similar data for other days
+    {
+      day: "বৃহস্পতিবার",
+      time: toBanglaNumber("২:৪৫ PM - ৮:০৫ PM"),
+      schedule: [
+        "ভাওয়াইয়া সংগীত: ৩:১০ PM",
+        "পাঁচ ফোঁড়ন: ৩:৩০ PM",
+        "লালন সংগীত: ৪:০০ PM",
+        "কাল মহাকাল: ৪:৩৫ PM",
+        "জাতীয় সংবাদ: ৪:৫৫ PM",
+        "আলীবাবা ও মর্জিনা নাটক: ৫:০৫ PM",
+        "আনন্দ আড্ডা: ৬:১০ PM",
+        "উন্নয়ন সংবাদ: ৬:৩০ PM",
+      ],
+    },
+    {
+      day: "শুক্রবার",
+      time: toBanglaNumber("২:৪৫ PM - ৮:০৫ PM"),
+      schedule: ["সাংস্কৃতিক অনুষ্ঠান: ৫:০০ PM", "আলোচনা অনুষ্ঠান: ৬:০০ PM"],
+    },
+    {
+      day: "শনিবার",
+      time: toBanglaNumber("২:৪৫ PM - ৮:০৫ PM"),
+      schedule: ["শিশুদের অনুষ্ঠান: ৩:০০ PM", "লালন সংগীত: ৪:৩০ PM"],
+    },
+    {
+      day: "রবিবার",
+      time: toBanglaNumber("২:৪৫ PM - ৮:০৫ PM"),
+      schedule: ["উপন্যাস পাঠ: ৫:৩০ PM", "সাপ্তাহিক পর্যালোচনা: ৬:১৫ PM"],
+    },
   ];
+  
 
   const dayColors = [
     "bg-blue-100",
@@ -99,8 +146,11 @@ const HoursCard: React.FC = () => {
               onMouseEnter={() => setHoveredDay(index)}
               onMouseLeave={() => setHoveredDay(null)}
             >
-              <div
+              <motion.div
                 className={`flex justify-between items-center p-4 text-gray-700 ${dayColors[index]} hover:bg-gray-200 rounded-lg w-full`}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                ref={hoveredDay === index ? buttonRef : null}
               >
                 <span className="font-medium flex items-center gap-2">
                   <FaCalendarDay className="text-blue-500" /> {hour.day}
@@ -108,12 +158,13 @@ const HoursCard: React.FC = () => {
                 <span className="font-medium flex items-center gap-2">
                   <FaClock className="text-green-500" /> {hour.time}
                 </span>
-              </div>
+              </motion.div>
 
               {hoveredDay === index && (
                 <div
                   role="tooltip"
-                  className="absolute z-10 w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-100 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800 top-full mt-2"
+                  className="absolute z-10 w-64 text-sm text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800"
+                  ref={popperRef}
                 >
                   <div className="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
                     <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -129,7 +180,6 @@ const HoursCard: React.FC = () => {
                       ))}
                     </ul>
                   </div>
-                  <div data-popper-arrow></div>
                 </div>
               )}
             </li>

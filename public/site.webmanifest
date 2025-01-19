@@ -17,7 +17,7 @@
     "theme_color": "#0084ff", 
     "background_color": "#ffffff",
     "display": "standalone",
-    "start_url": "/",
+    "start_url": "/radiochilmari",
     "scope": "/",
     "orientation": "portrait"
   }

@@ -1,8 +1,9 @@
 import TopRegularProgramSlider from "@/components/ui/TopRegularProgramSlider";
 import FacebookVideoEmbed from "@/components/ui/FacebookVideoEmbed";
 import RadioChilmariFacebookPage from "@/components/ui/FacebookPage";
-import HoursCard from "@/components/ui/HoursCard";
+// import HoursCard from "@/components/ui/HoursCard";
 // import OurFacebookNews from "@/components/ui/OurFacebookNews";
+import Tab from "@/components/ui/Tab";
 import RdrsProgram from "@/components/ui/RdrsProgram";
 import BackgroundHero from "@/components/ui/BackgroundHero";
 import Award from "@/components/ui/Award";
@@ -36,7 +37,8 @@ const Home = () => {
 
         {/* Hours Card Section */}
         <section className="my-8">
-          <HoursCard />
+          {/* <HoursCard /> */}
+          <Tab />
         </section>
 
         {/* RDRS Program Section */}

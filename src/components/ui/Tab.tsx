@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaRegCalendarAlt } from "react-icons/fa"; // Icon for tabs
 import { MdSchedule } from "react-icons/md"; // Icon for schedule items
@@ -18,13 +18,13 @@ const TabContent: React.FC<TabContentProps> = ({ open, tabCategory, details, sch
       initial={{ opacity: 0 }}
       animate={{ opacity: open === tabCategory ? 1 : 0 }}
       transition={{ duration: 0.3 }}
-      className={`p-6 text-base leading-relaxed text-gray-700 dark:text-gray-300 ${
+      className={`p-6 text-base leading-relaxed  ${
         open === tabCategory ? "block" : "hidden"
       }`}
     >
       <p className="mb-4">{details}</p>
       {schedule && (
-        <ul className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <ul className="mt-4 space-y-2 text-sm ">
           {schedule.map((item, index) => (
             <li key={index} className="flex items-center space-x-2">
               <MdSchedule className="text-primary" />
@@ -39,6 +39,7 @@ const TabContent: React.FC<TabContentProps> = ({ open, tabCategory, details, sch
 
 const Tab: React.FC = () => {
   const [open, setOpen] = useState<string>("monday");
+  const [loading, setLoading] = useState<boolean>(true);
 
   const handleTabOpen = (tabCategory: string) => {
     setOpen(tabCategory);
@@ -89,11 +90,18 @@ const Tab: React.FC = () => {
     },
   ];
 
+  // Simulate loading of data
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Simulate a loading delay of 1 second
+  }, []);
+
   return (
-    <section className="py-16 bg-gray-100 dark:bg-gray-800">
+    <section className="py-16 ">
       <div className="container mx-auto px-6 lg:px-20">
         <div className="mb-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
+          <h2 className="text-3xl font-bold ">
             সাপ্তাহিক সময়সূচী
           </h2>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
@@ -103,14 +111,14 @@ const Tab: React.FC = () => {
         <div className="flex flex-wrap -mx-4">
           <div className="w-full px-4">
             {/* Tabs Navigation */}
-            <div className="flex flex-wrap items-center justify-center rounded-lg bg-white dark:bg-gray-900 p-4 shadow-md">
+            <div className="flex flex-wrap items-center justify-center rounded-lg p-4 shadow-md">
               {daysData.map((day) => (
                 <motion.button
                   key={day.category}
                   onClick={() => handleTabOpen(day.category)}
                   className={`flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 md:text-base lg:px-6 ${
                     open === day.category
-                      ? "bg-primary text-white shadow-lg"
+                      ? "bg-primary shadow-lg"
                       : "text-gray-700 hover:bg-primary hover:text-white dark:text-gray-300"
                   } rounded-md`}
                   whileHover={{ scale: 1.05 }}
@@ -121,18 +129,22 @@ const Tab: React.FC = () => {
               ))}
             </div>
 
-            {/* Tabs Content */}
-            <div className="mt-8">
-              {daysData.map((day) => (
-                <TabContent
-                  key={day.category}
-                  details={day.details}
-                  tabCategory={day.category}
-                  open={open}
-                  schedule={day.schedule}
-                />
-              ))}
-            </div>
+            {/* Loading State */}
+            {loading ? (
+              <div className="text-center py-4">লোড হচ্ছে...</div>
+            ) : (
+              <div className="mt-8">
+                {daysData.map((day) => (
+                  <TabContent
+                    key={day.category}
+                    details={day.details}
+                    tabCategory={day.category}
+                    open={open}
+                    schedule={day.schedule}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

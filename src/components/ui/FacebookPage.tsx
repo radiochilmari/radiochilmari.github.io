@@ -33,11 +33,9 @@ const RadioChilmariFacebookPage = ({ pageHref }: { pageHref: string }) => {
             src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(
               pageHref
             )}&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`}
-            width="500"
+            width="400"
             height="500"
             style={{ border: "none", overflow: "hidden" }}
-            scrolling="no"
-            frameBorder="0"
             allowFullScreen={true}
           ></iframe>
         </div>

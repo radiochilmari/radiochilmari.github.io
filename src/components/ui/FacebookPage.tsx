@@ -9,7 +9,7 @@ const RadioChilmariFacebookPage = ({ pageHref }: { pageHref: string }) => {
       <h2 className="text-2xl font-bold text-blue-600 dark:text-gray-100">
         আমাদের অফিসিয়াল ফেসবুক পেজ
       </h2>
-      <div className="flex flex-col lg:flex-row items-center gap-6 p-6 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md">
+      <div className="flex flex-col lg:flex-row items-center gap-4 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md">
         {/* Left: Description */}
         <div className="text-center lg:text-left">
           <Image
@@ -28,7 +28,7 @@ const RadioChilmariFacebookPage = ({ pageHref }: { pageHref: string }) => {
         </div>
 
         {/* Right: Facebook Embed */}
-        <div className="w-full max-w-md bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+        <div className="w-full max-w-sm bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg">
           <iframe
             src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(
               pageHref

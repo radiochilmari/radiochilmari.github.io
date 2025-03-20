@@ -16,7 +16,8 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        bengali: ['"Noto Sans Bengali"', 'sans-serif']
+        sans: "var(--font-anek-bangla)",
+        display: "var(--font-galada)",
       },
     },
   },

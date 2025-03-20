@@ -1,14 +1,26 @@
 // app/layout.tsx or _app.tsx
 
 import { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Anek_Bangla, Galada } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from '@/components/ui/Navbar';
 import Footer from "@/components/ui/Footer";
 import { seoMetadata } from "@/contexts/SEO";  // Import the SEO metadata
 import "swiper/css";
 
-const inter = Inter({ subsets: ["latin"] });
+
+const anekBangla = Anek_Bangla({
+  subsets: ["latin", "bengali"], // Add Bengali subset for better support
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"], // Load all weights
+  variable: "--font-anek-bangla", // Define a CSS variable
+});
+
+const galada = Galada({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-galada", // Define a CSS variable
+});
+
 
 export const metadata: Metadata = {
   title: seoMetadata.title,
@@ -47,10 +59,10 @@ export default async function RootLayout({
         <meta name="twitter:description" content={seoMetadata.twitter.description} />
         <meta name="twitter:image" content={seoMetadata.twitter.image} />
   
-      <body className={inter.className}>
+      <body className={`${anekBangla.variable} ${galada.variable} font-sans`} >
         <Navbar />
-        <div className="font-bengali flex flex-col min-h-screen">
-          <div className="flex-1">{children}</div>
+        <div className="flex flex-col min-h-screen">
+          <div className="font-display">{children}</div>
         </div>
         <Footer />
       </body>

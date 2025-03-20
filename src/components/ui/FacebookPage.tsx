@@ -31,17 +31,15 @@ const RadioChilmariFacebookPage = ({ pageHref }: { pageHref: string }) => {
 
         {/* Right: Facebook Embed */}
         <div className="w-full max-w-md bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
-          <div
-            className="fb-page"
-            data-href={pageHref}
-            data-tabs="timeline"
-            data-width=""
-            data-height="400"
-            data-small-header="false"
-            data-adapt-container-width="true"
-            data-hide-cover="false"
-            data-show-facepile="true"
-          ></div>
+        <iframe
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fweb.facebook.com%2Fradiochilmari&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+          width="500"
+          height="500"
+          style={{ border: "none", overflow: "hidden" }}
+          scrolling="no"
+          frameBorder="0"
+          allowFullScreen={true}
+        ></iframe>
         </div>
       </div>
     </div>
